@@ -1,0 +1,13 @@
+version: '2'
+services:
+  favorites:
+    build: .
+    command: node_modules/.bin/nodemon index.js
+    environment:
+      NODE_ENV: development
+      PORT: 8080
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/home/app/favorites-service
+      - /home/app/favorites-service/node_modules

@@ -1,0 +1,23 @@
+{
+  "name": "favorites-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env PORT=8080 NODE_ENV=development nodemon index.js",
+    "now-start": "cross-env NODE_ENV=production node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.7.1",
+    "express": "4.14.0",
+    "sse-nodejs": "0.0.6",
+    "twit": "2.2.4"
+  },
+  "devDependencies": {
+    "cross-env": "2.0.0",
+    "nodemon": "1.10.0"
+  }
+}
