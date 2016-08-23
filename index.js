@@ -25,15 +25,15 @@ app.get('/status', (req, res) => {
 
   console.log({access_token, access_token_secret, track, language})
   clientFactory({access_token, access_token_secret})
-    .stream('statuses/filter', { track, language})
+    .stream('statuses/filter', {track, language})
     .on('tweet', sse.sendEvent.bind(sse, 'tweet'))
     .on('error', (err) => res.json(err))
 })
 
 app.get('/favs', (req, res) => {
-  const {token: access_token, secret: access_token_secret} = req.query
+  const {token: access_token, secret: access_token_secret, count = 200} = req.query
   clientFactory({access_token, access_token_secret})
-    .get('favorites/list', {count: 200})
+    .get('favorites/list', {count})
     .then(result => res.json(result.data))
     .catch(err => res.json(500, err))
 })
@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
   res.json(err)
 })
 
-if (process.env.NOW = 'production') {
+if (process.env.NOW) {
   app.listen()
 } else {
   app.listen(PORT, () => console.log(`Listen in the PORT ${PORT}`))
